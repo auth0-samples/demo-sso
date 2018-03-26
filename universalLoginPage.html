@@ -17,8 +17,11 @@
   <script src="https://cdn.auth0.com/js/es5-shim.min.js"></script>
   <![endif]-->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.js" integrity="sha256-URL6nHS/9miibsdDHZnKiIK/KBO538N+EfQFbgLwjNA=" crossorigin="anonymous"></script>  <script src="https://cdn.auth0.com/js/lock/11.3/lock.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.js" integrity="sha256-URL6nHS/9miibsdDHZnKiIK/KBO538N+EfQFbgLwjNA=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/3.8.2/superagent.js" integrity="sha256-hbCCFjlQxGCsFb5BNi10x/n4+Nuoq3gole66qz6B6G8=" crossorigin="anonymous"></script>
+
   <script src="https://cdn.auth0.com/js/auth0/9.3/auth0.min.js"></script>
+  <script src="https://cdn.auth0.com/js/lock/11.3/lock.min.js"></script>
   <script>
     // Decode utf8 characters properly
     var config = JSON.parse(decodeURIComponent(escape(window.atob('@@config@@'))));
@@ -38,13 +41,11 @@
     function autoLogin(cb) {
       // If connection is specified then this won't work, also, we shouldn't do SSO if prompt=login
       if (connection || prompt) return cb();
-      fetch('/user/ssodata', {
-        credentials: "same-origin"
-      })
+      superagent
+        .get('/user/ssodata')
+        .withCredentials()
         .then(function(res) {
-          return res.json();
-        })
-        .then(function(ssoData) {
+          var ssoData = res.body;
           if (ssoData.sso && ssoData.lastUsedConnection && ssoData.lastUsedConnection.name) {
             const ssoOptions = _.assign({}, {
                 domain: config.auth0Domain,
