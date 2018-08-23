@@ -1,47 +1,7 @@
 # Auth0 SSO Demo
 
-This sample demonstrates how to configure your Universal Login Page to automatically sign in if you have an SSO session without passing prompt=none
-
-## Getting Started
-
-If you haven't already done so, [sign up](https://auth0.com) for your free Auth0 account and create a new client in the [dashboard](https://manage.auth0.com).
-* Find the **domain** and **client ID** from the settings area and add the URL for your application to the **Allowed Callback URLs** box.
-* If you are serving the application with the provided `serve` library, you will need to add '127.0.0.1 test.local' to your hosts file and then the URL for allowedCallbacks is `http://test.local:3000`.
-* Add 'http://test.local:3000' to your Allowed Logout URLs in your tenant settings (upper right drop down menu->Settings->Advanced)*[]:
-* Clone this repo.
-
-```bash
-cd demoSSO
-yarn install
-```
-
-## Set the Client ID and Domain
-
-Rename the `auth0-variables.sample.js` file to `auth0-variables.js` and provide the **client ID** and **domain** there.
-
-## Initialize your Universal Login Page
-
-* Log into manage.auth0.com
-* Click Hosted Pages
-* Make sure that "Customize Login Page" is turned on
-* Copy the contents of universalLoginPage.html to the code box
-* Click Save
-
-## Run the Application
-
-The `serve` module provided with this sample can be run with the `start` command.
-
-```bash
-yarn run start
-```
-
-The application will be served at `http://test.local:3000`.
-
-## How to Test that SSO is working
-
-Logging in the first time should create your SSO session.
-When you are returned to the page, click "Kill Session", this will remove your application browser session, but not your Auth0 SSO session.  Refreshing the page should leave you logged out, but if you click Login, you should automatically log in without having to enter credentials.
-When you click "Logout" it will kill your SSO session, clicking login should prompt you to enter your credentials.
+# DO NOT USE THIS ANYMORE!!! IT IS NO LONGER NEEDED!!
+Please see instructions [here](https://auth0.com/docs/sso/current/setup) for turning on Seamless SSO for your tenant.
 
 ## What is Auth0?
 
